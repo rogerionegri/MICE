@@ -1,0 +1,128 @@
+#
+#
+# IDL Java bridge configuration (Unix)
+#
+#
+# Note: By default, on all platforms except 32-bit Windows, the IDL process
+# is run in the same process as the IDL Workbench. In this case, the Java
+# Virtual Machine used by the IDL Workbench is also used for the Java bridge,
+# and any values set in this file or by any Java environment variables are ignored.
+# The only exception is the JVM Classpath, which is still honored.
+# To set JVM options to be used by Java bridge processes launched within the
+# IDL Workbench, you should add the options to the idlde.ini file in your
+# IDL bin directory.
+# On 32-bit Windows, the IDL process is separate from the IDL Workbench,
+# and all of the settings within this file will apply.
+
+
+
+##########################
+# Java CLASSPATH setting
+##########################
+#
+#
+#    This setting determines how the IDL-Java bridge finds its java classes.
+#    It MUST be set in the config file if you wish to find any classes other 
+#    than those provided by Java
+#
+#    If $CLASSPATH appears in the setting (as shown below), the value of 
+#    the environment variable $CLASSPATH is substituted in this setting
+#
+#    Entries in Classpath should be separated by a colon on Unix
+#
+#    NOTE: This setting follows the rules of the -classpath option in the java 
+#          or javac command,  That is, .jar files should be explicitly stated.  
+#          If only a directory location is specified, Java will find .class 
+#          files inside this folder but NOT .jar files
+
+
+# Allow IDL-Java bridge to use .class files located in my CLASSPATH and also the 
+# classes found in the examples .jar file shipped with the bridge
+
+JVM Classpath = $CLASSPATH:/usr/local/harris/envi56/idl88/resource/bridges/import/java/jbexamples.jar
+
+
+
+################################
+# Java virtual machine locations
+################################
+#
+#     JVM is required.
+#
+#     On Linux systems, set the environment variable
+#     $IDLJAVAB_LIB_LOCATION to the location of your libjvm.so. This
+#     value will be used when IDL runs the IDL-Java bridge from a
+#     command line (terminal) or runtime session.
+#
+#     For example: 
+#
+#      setenv  IDLJAVAB_LIB_LOCATION /usr/java/jdkX.X/jre/lib/amd64/server
+#
+#     Note that under Macintosh OS X, IDL uses the version of
+#     Java installed along with the operating system, and ignores
+#     any value you place in IDLJAVAB_LIB_LOCATION.
+
+
+#JVM LibLocation = 
+
+
+###################
+# JVM start options
+###################
+#
+#   'JVM Option#'
+#      There may be up to 20 additional JVM options specified.  These 
+#      will be used when starting the JVM.  
+#
+#      NOTE: This is for advanced users only who understand JVM initialization
+#
+#      For example, a user that wants to reset the initial and maximum memory
+#      allocated when the JVM starts, might do something like:
+#        JVM Option1 = -Xms4m
+#        JVM Option2 = -Xmx16m
+#
+#      NOTE: These options are unsupported options...thus their effects are 
+#            implementation-dependent. It's possible that your implementation 
+#            doesn't support them.
+#
+
+
+###########################
+# IDL-Java Bridge debugging 
+###########################
+#
+#
+# Some limited debugging is provided via a log file.  
+#
+# 'Log Location':  Location where log files will be created.  
+#                  Log files have format jb_log<pid>.txt
+#
+# 'Bridge Logging':  Level of debugging information logged to log file.  
+#                    Possible options are:
+#                    - SEVERE (default, bridge errors logged)
+#                    - CONFIG (configuration settings logged)
+#                    - CONFIGFINE (configuration settings logged, more detail)
+
+#Log Location = /tmp
+#Bridge Logging = CONFIG
+
+
+##############################
+# IDL-Java Bridge Reset Policy
+##############################
+#
+# By default, the IDL-Java bridge persists for the duration of the IDL
+# session in which it was created. This means that modifications to
+# items in the Java Classpath are not loaded until a new IDL session
+# is started. This policy allows the IDL-Java bridge to be configured
+# to reset when the IDL executive command .FULL_RESET_SESSION is executed.
+#
+# 'Restart Bridge':  Policy for restarting the IDL-Java bridge.
+#                    Possible options are:
+#                    - False (Bridge does not reset during an IDL session)
+#                    - True  (Bridge resets when the .FULL_RESET_SESSION
+#                             executive command is executed)
+
+#Restart Bridge = False
+
+

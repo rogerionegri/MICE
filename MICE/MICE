@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# This script starts an IDL Runtime or Virtual Machine application
+# from an IDL installation located in a subdirectory of the directory
+# containing the script.
+#
+
+
+# Find the location of this script
+topdir=`dirname $0`
+if (test $topdir = ".") ; then
+   topdir=$PWD;
+fi
+
+# Specify the path to the IDL SAVE file that launches
+# the application, relative to $topdir.
+idlapp=./MICE.sav
+
+# Specify the path to the top directory of the IDL
+# distribution, relative to $topdir.
+idl_install_dir=idl88
+IDL_DIR=$topdir/$idl_install_dir ; export IDL_DIR
+
+# Change the working directory
+cd $topdir
+
+# Run the application
+exec $IDL_DIR/bin/idl -vm=$idlapp

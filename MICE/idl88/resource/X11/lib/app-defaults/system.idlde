@@ -1,0 +1,215 @@
+!
+! system.idlde is the system default version of the user resource file
+! (.idlde). If $HOME/.idlde doesn't exist first time you call Idlde,
+! resources from this file are loaded, and saved into your $HOME/.idlde
+! first time you Quit Idlde session.
+! You may modify/delete the Macros user menu items and Tool buttons in Toolbar
+! by Selecting Macros/Edit dialog.
+! You may further customize Idlde using File/Preferences dialog.
+!
+! Macros User Menu Items
+!
+! The Macros menu is user customizable. Idlde looks for a
+! resource named macrosListUser. Its value  supplies the resource names
+! of the additional menu items to be added to the Macros menu.
+! This allows user defined menu items to be added to Idlde.
+! The few menu items defined below are default user menu items, which
+! intend to make calling real editors like emacs and vi, and other tools easy.
+!
+! The idlCommand resource is used to define an IDL command that gets
+! entered into the input command stream when the mebu item is
+! selected or button is pressed.
+! You can use % escapes similar to printf(3) to include certain
+! types of information into the command:
+!
+!	%S - The text for the current selection.
+!	%F - The filename associated with the currently visible
+!	     View Panel.
+!	%P - The full path filename associated with the currently visible
+!	     View Panel.
+!       %N - The base name of the filename (without path a suffix).
+!       %B - The base name of the filename (without path, but with a suffix)
+!	%L - the line number with the current insertion point.
+!	%% - inserts %
+!
+! Note. If you are using Emacs, XEmacs you can use idl-mode
+!       (ftp://fermi.jhuapl.edu/pub/idl_emacs/idl.el)
+!       for convenient editing of IDL files.
+!
+
+idlde*menubar*macrosMenu*macrosListUser:	printvar helpvar import_image import_ascii import_binary import_hdf demo idlexbr_assistant
+!
+idlde*menubar*macrosMenu*printvar*labelString:	Print Variable
+idlde*menubar*macrosMenu*printvar*mnemonic:	P
+idlde*menubar*macrosMenu*printvar*idlCommand:	PRINT,%S
+idlde*menubar*macrosMenu*printvar*hint.text:	Print the selected variable in the Output Log.
+!
+idlde*menubar*macrosMenu*helpvar*labelString:	Help On Variable
+idlde*menubar*macrosMenu*helpvar*mnemonic:	H
+idlde*menubar*macrosMenu*helpvar*idlCommand:	HELP,%S,/STRUCT
+idlde*menubar*macrosMenu*helpvar*hint.text:	Help on the selected variable in the Output Log.
+!
+idlde*menubar*macrosMenu*import_image*labelString:	Import Image File
+idlde*menubar*macrosMenu*import_image*mnemonic:		I
+idlde*menubar*macrosMenu*import_image*idlCommand:	Import_Image
+idlde*menubar*macrosMenu*import_image*hint.text:	Import Image File.
+!
+idlde*menubar*macrosMenu*import_ascii*labelString:	Import ASCII File
+idlde*menubar*macrosMenu*import_ascii*mnemonic:		A
+idlde*menubar*macrosMenu*import_ascii*idlCommand:	Import_Ascii
+idlde*menubar*macrosMenu*import_ascii*hint.text:	Import ASCII File.
+!
+idlde*menubar*macrosMenu*import_binary*labelString:	Import Binary File
+idlde*menubar*macrosMenu*import_binary*mnemonic:	B
+idlde*menubar*macrosMenu*import_binary*idlCommand:	Import_Binary
+idlde*menubar*macrosMenu*import_binary*hint.text:	Import Binary File.
+!
+idlde*menubar*macrosMenu*import_hdf*labelString:	Import HDF File
+idlde*menubar*macrosMenu*import_hdf*mnemonic:		F
+idlde*menubar*macrosMenu*import_hdf*idlCommand:		Import_HDF
+idlde*menubar*macrosMenu*import_hdf*hint.text:		Import HDF File.
+!
+idlde*menubar*macrosMenu*demo*labelString:	IDL Demo
+idlde*menubar*macrosMenu*demo*mnemonic:		D
+idlde*menubar*macrosMenu*demo*idlCommand:	Demo
+idlde*menubar*macrosMenu*demo*hint.text:	Run IDL Demo.
+!
+idlde*menubar*macrosMenu*idlexbr_assistant*labelString:	Export Bridge Assistant
+idlde*menubar*macrosMenu*idlexbr_assistant*mnemonic:	X
+idlde*menubar*macrosMenu*idlexbr_assistant*idlCommand:	idlexbr_assistant
+idlde*menubar*macrosMenu*idlexbr_assistant*hint.text:	Launch the IDL Export Bridge Assistant.
+!
+idlde*menubar*macrosMenu*Xemacs*labelString:	File in XEmacs
+idlde*menubar*macrosMenu*Xemacs*idlCommand:	SPAWN,'xemacs +%L %P &'
+idlde*menubar*macrosMenu*Xemacs*hint.text:	Run XEmacs in the separate window.
+!
+! Note. For gnuclient to work, gnuclient must be installed in your path,
+!       and gnuserv must be enabled in you .emacs (put (gnuserv-start) in your
+!       .emacs).
+!
+idlde*menubar*macrosMenu*gnuclient*labelString:	File in running XEmacs
+idlde*menubar*macrosMenu*gnuclient*idlCommand:	SPAWN, 'gnuclient +%L %P &'
+idlde*menubar*macrosMenu*gnuclient*hint.text:	Display source file in the currently running Xemacs.
+!
+idlde*menubar*macrosMenu*emacsXwin*labelString:	File in Emacs (X Window)
+idlde*menubar*macrosMenu*emacsXwin*idlCommand:	SPAWN, 'emacs +%L %P &'
+idlde*menubar*macrosMenu*emacsXwin*hint.text:	Run Emacs in the separate window.
+!
+idlde*menubar*macrosMenu*emacsXterm*labelString:	File in Emacs (Xterm)
+idlde*menubar*macrosMenu*emacsXterm*idlCommand:	SPAWN, 'xterm -e emacs -nw +%L %P &'
+idlde*menubar*macrosMenu*emacsXterm*hint.text: File in Emacs in the Xterm window.
+!
+! Note. For emacsclient to work, emacsclient must be installed in your path,
+!       and emacs server must be enabled in you .emacs
+!       (put (load "server.el") (server-start) in your .emacs).
+!
+idlde*menubar*macrosMenu*emacsclient*labelString: File in running Emacs
+idlde*menubar*macrosMenu*emacsclient*idlCommand:	SPAWN, 'emacsclient +%L %P &'
+idlde*menubar*macrosMenu*emacsclient*hint.text: Display source file in the currently running Emacs.
+!
+idlde*menubar*macrosMenu*viXterm*labelString:	File in vi (Xterm)
+idlde*menubar*macrosMenu*viXterm*idlCommand:	SPAWN, 'xterm -e vi +%L %P &'
+idlde*menubar*macrosMenu*viXterm*hint.text:	Run vi in the Xterm window.
+!
+! Toolbar User Macro Buttons
+!
+! The idlButtonsUser resource allows you to add the control buttons, and
+! supplies their resource names. These resource names are then used
+! to specify additional details about the button, such as its label or pixmap,
+! the IDL command it enters, and the status message displayed in the
+! status bar, when mouse pointers enters the button.
+! The few Macro Buttons defined below are default user Macro Buttons.
+!
+! To add a new button to Idlde, you must:
+!
+!	1) Add a new name to the idlButtonsUser list.
+!          The buttons are created in the order specified.
+!
+!	2) Add a labelString or labelPixmap, idlCommand and/or hint.text
+!          resource to your .idlde file for the new button.
+!
+idlde*control*idlButtonsUser: printvar helpvar import_image import_ascii import_binary import_hdf demo
+!
+idlde*control*user.printvar*labelString: Print Var
+idlde*control*user.printvar*labelPixmap: idl_printvar
+idlde*control*user.printvar*idlCommand:  print,%S
+idlde*control*user.printvar*hint.text:   Print Selected Variable.
+idlde*control*user.printvar*tip.text:    Print Variable.
+!
+idlde*control*user.helpvar*labelString:  Help on Var
+idlde*control*user.helpvar*labelPixmap:  idl_helpvar
+idlde*control*user.helpvar*idlCommand:   HELP,%S,/STRUCT
+idlde*control*user.helpvar*hint.text:    Help on Selected Variable.
+idlde*control*user.helpvar*tip.text:     Help on Variable.
+!
+idlde*control*user.import_image*labelString:	Import Image File
+idlde*control*user.import_image*labelPixmap:	idl_import_image
+idlde*control*user.import_image*idlCommand:	Import_Image
+idlde*control*user.import_image*hint.text:	Import Image File.
+idlde*control*user.import_image*tip.text:	Import Image File.
+!
+idlde*control*user.import_ascii*labelString:	Import ASCII File
+idlde*control*user.import_ascii*labelPixmap:	idl_import_ascii
+idlde*control*user.import_ascii*idlCommand:	Import_Ascii
+idlde*control*user.import_ascii*hint.text:	Import ASCII File.
+idlde*control*user.import_ascii*tip.text:	Import ASCII File.
+!
+idlde*control*user.import_binary*labelString:	Import Binary File
+idlde*control*user.import_binary*labelPixmap:	idl_import_binary
+idlde*control*user.import_binary*idlCommand:	Import_Binary
+idlde*control*user.import_binary*hint.text:	Import Binary File.
+idlde*control*user.import_binary*tip.text:	Import Binary File.
+!
+idlde*control*user.import_hdf*labelString:	Import HDF File
+idlde*control*user.import_hdf*labelPixmap:	idl_import_hdf
+idlde*control*user.import_hdf*idlCommand:	Import_HDF
+idlde*control*user.import_hdf*hint.text:	Import HDF File.
+idlde*control*user.import_hdf*tip.text:		Import HDF File.
+!
+idlde*control*user.demo*labelString:     IDL Demo
+idlde*control*user.demo*labelPixmap:     idl_demo
+idlde*control*user.demo*idlCommand:      Demo
+idlde*control*user.demo*hint.text:       Run IDL Demo.
+idlde*control*user.demo*tip.text:        Run Demo.
+!!!
+!!! DO NOT ADD ANYTHING BELOW THIS LINE. IT WILL BE OVERWRITTEN.
+!!!
+idlde.x:			75
+idlde.y:			25
+idlde.width:			790
+idlde.height:			760
+idlde*hideView:			False
+idlde*hideControl:		False
+idlde*hideCommand:		False
+idlde*multiWindowEdit:		False
+idlde*readOnly:			False
+idlde*showSplashScreen:		True
+idlde*log*logLines:		500
+idlde*control*numColumns:	1
+idlde*control*packing: 		XmPACK_TIGHT
+idlde.layout:			2
+idlde*chromaEdit:		True
+idlde*htabIndent:		4
+idlde.userProStyle:		black,white,bold
+idlde.userFunStyle:		black,white,bold
+idlde.systemProStyle:		red,white,bold
+idlde.systemFunStyle:		red,white,bold,italic
+idlde.stringsStyle:		white,normal,normal
+idlde.numbersStyle:		green,normal,normal
+idlde.keywordsStyle:		blue,default,bold
+idlde.commentsStyle:		red,normal,normal
+idlde.compileOption:		0
+idlde*changeDir:		True
+idlde.saveOnExit:		True
+idlde.confirmExit:		True
+idlde.path:			<IDL_DEFAULT>
+
+! The following resources are now handled by IDL's preference
+! system. Setting them may cause IDL to display messages to
+! this effect at startup.
+!Idl.graphicsWindowWidth:	640
+!Idl.graphicsWindowHeight:	512
+!Idl.graphicsWindow14Screen:	True
+!Idl.retain:			1
+!Idl.graphicsFontCache:		256
+!Idl.renderer:			0
